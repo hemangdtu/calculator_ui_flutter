@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gdg_app/buttons.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(
@@ -32,24 +33,24 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<String> buttons = [
     "C",
     "DEL",
-    "%",
-    "/",
+    "(",
+    ")",
     "9",
     "8",
     "7",
-    "*",
+    "/",
     "6",
     "5",
     "4",
-    "-",
+    "x",
     "3",
     "2",
     "1",
-    "+",
+    "-",
     ".",
     "0",
-    "ANS",
     "=",
+    "+",
   ];
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       userQuestion,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontFamily: "Gobold Bold",
+                        fontSize: 30,
                       ),
                     ),
                   ),
@@ -81,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       userAnswer,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontFamily: "Gobold Bold",
+                        fontSize: 40,
                       ),
                     ),
                   ),
@@ -90,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Expanded(
-            flex: 4,
+            flex: 2,
             child: Container(
               child: GridView.builder(
                 itemCount: buttons.length,
@@ -103,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       buttonTapped: () {
                         setState(() {
                           userQuestion = '';
+                          userAnswer = '';
                         });
                       },
                       buttonText: buttons[index],
@@ -119,6 +123,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       buttonText: buttons[index],
                       color: Colors.red,
+                      textColor: Colors.white,
+                    );
+                  } else if (index == buttons.length - 2) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          equalPressed();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      color: Colors.red[900],
                       textColor: Colors.white,
                     );
                   } else {
@@ -147,8 +162,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool isOperator(String x) {
-    if (x == "%" || x == "/" || x == "*" || x == "-" || x == "+" || x == "=")
-      return true;
+    if (x == "%" ||
+        x == "/" ||
+        x == "x" ||
+        x == "-" ||
+        x == "+" ||
+        x == "=" ||
+        x == "(" ||
+        x == ")" ||
+        x == ".") return true;
     return false;
+  }
+
+  void equalPressed() {
+    String finalQuestion = userQuestion;
+    finalQuestion = finalQuestion.replaceAll('X', '*');
+    Parser p = Parser();
+    Expression exp = p.parse(finalQuestion);
+    ContextModel cm = ContextModel();
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+    userAnswer = eval.toString();
   }
 }
