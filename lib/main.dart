@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gdg_app/buttons.dart';
 import 'package:math_expressions/math_expressions.dart';
 
-void main() {
-  runApp(
-    MyApp(),
-  );
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
