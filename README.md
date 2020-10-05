@@ -7,5 +7,5 @@ Flutter is an open-source SDK, by Google, used for creating high-performance, hi
 <table style={border:"none"}><tr><td><img src="screenshots/one.jpg" alt="Basic Calculator"/></td><td><img src="screenshots/two.jpg" alt="Basic Calculator (Working)"/></td></tr></table>
 
 ### Follow Me
- - <img src="https://image.flaticon.com/icons/svg/124/124011.svg" height="15" width="15" /> [Linkedin](linkedin.com/in/hemang-sinha-0485081a4)
+ - <img src="https://image.flaticon.com/icons/svg/124/124011.svg" height="15" width="15" /> [Linkedin](https://www.linkedin.com/in/hemang-sinha-0485081a4)
 - <img src="https://image.flaticon.com/icons/svg/124/124010.svg" height="15" width="15" /> [Twitter](https://twitter.com/HemangSinha)
